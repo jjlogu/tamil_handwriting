@@ -1,5 +1,10 @@
 <html>
 <head>
+<style>
+#canvas {
+border: 1px solid gray;
+}
+</style>
 </head>
 <body>
 <div id="canvasDiv"></div>
