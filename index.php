@@ -12,6 +12,7 @@
 </head>
 <body>
   <div id="canvasDiv"></div>
+  <button onclick="clearCanvas()">Clear</button>
   <script type="text/javascript">
     var canvasDiv = document.getElementById('canvasDiv');
     var canvasWidth  = 60;
@@ -79,6 +80,14 @@
          context.closePath();
          context.stroke();
       }
+    }
+
+    // Clear the canvas context using the canvas width and height
+    function clearCanvas() {
+      clickX = new Array();
+      clickY = new Array();
+      clickDrag = new Array();
+      context.clearRect(0, 0, canvas.width, canvas.height);
     }
 
   </script>
