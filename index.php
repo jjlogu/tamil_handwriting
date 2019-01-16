@@ -39,7 +39,7 @@
 
 
     // Simple canvas drawing
-    $('#canvas').mousedown(function(e){
+    $('#canvas').mousedown(function(e) {
       var mouseX = e.pageX - this.offsetLeft;
       var mouseY = e.pageY - this.offsetTop;
     		
@@ -47,16 +47,16 @@
       addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
       redraw();
     });
-    $('#canvas').mousemove(function(e){
+    $('#canvas').mousemove(function(e) {
       if(paint){
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
         redraw();
       }
     });
-    $('#canvas').mouseup(function(e){
+    $('#canvas').mouseup(function(e) {
       paint = false;
     });
-    $('#canvas').mouseleave(function(e){
+    $('#canvas').mouseleave(function(e) {
       paint = false;
     });
 
@@ -65,13 +65,12 @@
     var clickDrag = new Array();
     var paint;
 
-    function addClick(x, y, dragging)
-    {
+    function addClick(x, y, dragging) {
       clickX.push(x);
       clickY.push(y);
       clickDrag.push(dragging);
     }
-    function redraw(){
+    function redraw() {
       context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
       
       context.strokeStyle = "#000";
@@ -90,7 +89,6 @@
          context.stroke();
       }
     }
-
     // Clear the canvas context using the canvas width and height
     function clearCanvas() {
       clickX = new Array();
@@ -98,6 +96,36 @@
       clickDrag = new Array();
       context.clearRect(0, 0, canvas.width, canvas.height);
     }
+
+    // Add touch event listeners to canvas element
+    canvas.addEventListener("touchstart", function(e)
+    {
+      // Mouse down location
+      var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft,
+        mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
+      
+      paint = true;
+      addClick(mouseX, mouseY, false);
+      redraw();
+    }, false);
+    canvas.addEventListener("touchmove", function(e){
+      
+      var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft,
+        mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
+            
+      if(paint){
+        addClick(mouseX, mouseY, true);
+        redraw();
+      }
+      e.preventDefault()
+    }, false);
+    canvas.addEventListener("touchend", function(e){
+      paint = false;
+        redraw();
+    }, false);
+    canvas.addEventListener("touchcancel", function(e){
+      paint = false;
+    }, false);
 
   </script>
 
