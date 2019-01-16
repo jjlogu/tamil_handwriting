@@ -4,6 +4,15 @@
     #canvas {
       border: 1px solid gray;
     }
+    #canvasDiv {
+        /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
   </style>
   <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
