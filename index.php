@@ -23,15 +23,47 @@
       user-select: none;
     }
     .left {
-      font-size: 100px;
-      line-height: 100px;
+      font-size: 120px;
+      line-height: 120px;
     }
     .left, .right {
-      width: 120px;
-      display: inline-block;
-      margin: auto;
-      height: 150px;
-      overflow: auto;
+      margin: 10px;
+    }
+    .right button {
+      margin-top: 5px;
+    }
+    .divTable{
+      display: table;
+      width: 100%;
+    }
+    .divTableRow {
+      display: table-row;
+    }
+    .divTableHeading {
+      background-color: #EEE;
+      display: table-header-group;
+    }
+    .divTableCell, .divTableHead {
+      border: 1px dashed #999999;
+      display: table-cell;
+      padding: 3px 10px;
+      vertical-align: middle;
+    }
+    .divTableCell:first-child {
+      border-right-style: none;
+    }
+    .divTableHeading {
+      background-color: #EEE;
+      display: table-header-group;
+      font-weight: bold;
+    }
+    .divTableFoot {
+      background-color: #EEE;
+      display: table-footer-group;
+      font-weight: bold;
+    }
+    .divTableBody {
+      display: table-row-group;
     }
   </style>
   <script
@@ -200,8 +232,15 @@
     // foreach ($tamil_html_unicodes as $key => $tamil_html_unicode) {
         ?>
     <div class="wrap">
-      <div class="left"><?= $tamil_html_unicodes[0] ?></div>
-      <div id="canvasDiv" class="right"><br/><br/><button onclick="clearCanvas()">Clear</button></div>
+      <div class="divTable">
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCell"><div class="left"><?= $tamil_html_unicodes[0] ?></div></div>
+            <div class="divTableCell"><div class="right" id="canvasDiv"><br/><button onclick="clearCanvas()">Clear</button></div></div>
+          </div>
+        </div>
+      </div>
+      
     </div>
     
         <?php
