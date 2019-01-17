@@ -229,13 +229,22 @@
                                 "&#x0BB9&#x0BCD",
                                 "&#x0B95&#x0BCD&#x0BB7&#x0BCD",
                                 "&#x0B94");
-    // foreach ($tamil_html_unicodes as $key => $tamil_html_unicode) {
+        
+        $total = sizeof($tamil_html_unicodes);
+        
+        $id = 0;
+        if(is_numeric($_GET["id"]))
+          $id = $_GET["id"];
+
+        if( !((0 <= $id) && ($id < $total)) )
+          $id = 0;
+
         ?>
     <div class="wrap">
       <div class="divTable">
         <div class="divTableBody">
           <div class="divTableRow">
-            <div class="divTableCell"><div class="left"><?= $tamil_html_unicodes[0] ?></div></div>
+            <div class="divTableCell"><div class="left"><?= $tamil_html_unicodes[$id] ?></div></div>
             <div class="divTableCell"><div class="right" id="canvasDiv"><br/><button onclick="clearCanvas()">Clear</button></div></div>
           </div>
         </div>
