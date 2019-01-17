@@ -252,14 +252,16 @@
             <div class="divTableCell"><div class="right" id="canvasDiv"><br/><button onclick="clearCanvas()">Clear</button></div></div>
           </div>
           <div class="divTableRow nextbutton">
-            <div class="divTableCell">&nbsp;</div>
-            <div class="divTableCell"><button>next</button></div>
+            <div class="divTableCell"><?=($id+1)."/".$total?></div>
+            <div class="divTableCell"><button onclick="next()">next</button></div>
           </div>
         </div>
       </div>
     </div>
   
   <script type="text/javascript">
+
+    /* Canvas paint code start */
     var canvasDiv = document.getElementById('canvasDiv');
     var canvasWidth  = 100;
     var canvasHeight = 100;
@@ -273,7 +275,6 @@
     	canvas = G_vmlCanvasManager.initElement(canvas);
     }
     context = canvas.getContext("2d");
-
 
     // Simple canvas drawing
     $('#canvas').mousedown(function(e) {
@@ -364,7 +365,13 @@
       paint = false;
     }, false);
 
-  </script>
+    /* Canvas paint code end */
 
+
+    // Save the picture
+    function next() {
+      window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id+1)?>";
+    }
+  </script>
 </body>
 </html>
