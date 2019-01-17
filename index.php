@@ -9,18 +9,29 @@
       height: 100%;
       display: grid;
     }
-    #canvasDiv {
-        /* center align */
-        text-align: center;
-        margin: auto;
+    .wrap {
+      /* center align */
+      text-align: center;
+      margin: auto;
 
-        /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+      /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .left {
+      font-size: 100px;
+      line-height: 100px;
+    }
+    .left, .right {
+      width: 120px;
+      display: inline-block;
+      margin: auto;
+      height: 150px;
+      overflow: auto;
     }
   </style>
   <script
@@ -186,11 +197,15 @@
                                 "&#x0BB9&#x0BCD",
                                 "&#x0B95&#x0BCD&#x0BB7&#x0BCD",
                                 "&#x0B94");
-    foreach ($tamil_html_unicodes as $key => $tamil_html_unicode) {
-        echo $key." = ".$tamil_html_unicode."<br/>";
-    }
+    // foreach ($tamil_html_unicodes as $key => $tamil_html_unicode) {
+        ?>
+    <div class="wrap">
+      <div class="left"><?= $tamil_html_unicodes[0] ?></div>
+      <div id="canvasDiv" class="right"><br/><br/><button onclick="clearCanvas()">Clear</button></div>
+    </div>
+    
+        <?php
   ?>
-  <div id="canvasDiv"><br/><br/><button onclick="clearCanvas()">Clear</button></div>
   
   <script type="text/javascript">
     var canvasDiv = document.getElementById('canvasDiv');
