@@ -65,6 +65,10 @@
     .divTableBody {
       display: table-row-group;
     }
+    .nextbutton .divTableCell {
+      text-align: right;
+      border: none;
+    }
   </style>
   <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -247,9 +251,12 @@
             <div class="divTableCell"><div class="left"><?= $tamil_html_unicodes[$id] ?></div></div>
             <div class="divTableCell"><div class="right" id="canvasDiv"><br/><button onclick="clearCanvas()">Clear</button></div></div>
           </div>
+          <div class="divTableRow nextbutton">
+            <div class="divTableCell">&nbsp;</div>
+            <div class="divTableCell"><button>next</button></div>
+          </div>
         </div>
       </div>
-      
     </div>
     
         <?php
