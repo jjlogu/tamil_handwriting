@@ -1,3 +1,14 @@
+<?php 
+
+if(!empty($_POST['']))
+$data = $_POST['photo'];
+list($type, $data) = explode(';', $data);
+list(, $data)      = explode(',', $data);
+$data = base64_decode($data);
+
+mkdir($_SERVER['DOCUMENT_ROOT'] . "/photos");
+
+?>
 <html>
 <head>
   <meta name="viewport" content="width=300, initial-scale=1">
@@ -370,6 +381,14 @@
 
     // Save the picture
     function next() {
+      var photo = canvas.toDataURL('image/jpeg');                
+      $.ajax({
+        method: 'POST',
+        url: 'photo_upload.php',
+        data: {
+          photo: photo
+        }
+      });
       window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id+1)?>";
     }
   </script>
