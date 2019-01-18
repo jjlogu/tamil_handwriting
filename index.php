@@ -377,8 +377,12 @@
         data: {
           photo: photo
         }
+        statusCode: {
+          200: function() {
+            window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id+1)?>";
+          }
+        }
       });
-      window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id+1)?>";
     }
   </script>
 </body>
