@@ -1,16 +1,18 @@
 <?php 
 
 if(!empty(@$_POST['photo'])) {
-  $data = $_POST['photo'];
-  if(base64_encode(base64_decode($data, true)) === $data) {
-		list($type, $data) = explode(';', $data);
-		list(, $data)      = explode(',', $data);
+
+	list($type, $data) = explode(';', $_POST['photo']);
+	list(, $data)      = explode(',', $data);
+
+	if(base64_encode(base64_decode($data, true)) === $data) {
 		$data = base64_decode($data, true);
-		$file =  uniqid() . '.png';
+		$file =  "data/".uniqid() . '.png';
 		$success = file_put_contents($file, $data);
-		var_dump($success);
+		echo $success?0:1;
 	}
 }
+
 die();
 
 ?>
