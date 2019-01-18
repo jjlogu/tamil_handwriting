@@ -370,13 +370,13 @@
 
     // Save the picture
     function next() {
-      var photo = canvas.toDataURL('image/jpeg');                
+      var photo = canvas.toDataURL('image/png');                
       $.ajax({
         method: 'POST',
         url: 'save.php',
         data: {
           photo: photo
-        }
+        },
         statusCode: {
           200: function() {
             window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id+1)?>";
