@@ -1,14 +1,3 @@
-<?php 
-
-if(!empty($_POST['']))
-$data = $_POST['photo'];
-list($type, $data) = explode(';', $data);
-list(, $data)      = explode(',', $data);
-$data = base64_decode($data);
-
-mkdir($_SERVER['DOCUMENT_ROOT'] . "/photos");
-
-?>
 <html>
 <head>
   <meta name="viewport" content="width=300, initial-scale=1">
@@ -384,7 +373,7 @@ mkdir($_SERVER['DOCUMENT_ROOT'] . "/photos");
       var photo = canvas.toDataURL('image/jpeg');                
       $.ajax({
         method: 'POST',
-        url: 'photo_upload.php',
+        url: 'save.php',
         data: {
           photo: photo
         }
