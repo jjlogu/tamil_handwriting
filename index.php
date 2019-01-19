@@ -236,23 +236,23 @@
         
     $total = sizeof($tamil_html_unicodes);
     
-    $id = 0;
+    $id = 1;
     if(is_numeric(@$_GET["id"]))
       $id = $_GET["id"];
 
-    if( !((0 <= $id) && ($id < $total)) )
-      $id = 0;
+    if( !((1 < $id) && ($id < $total)) )
+      $id = 1;
 
     ?>
     <div class="wrap">
       <div class="divTable">
         <div class="divTableBody">
           <div class="divTableRow">
-            <div class="divTableCell"><div class="left"><?= $tamil_html_unicodes[$id] ?></div></div>
+            <div class="divTableCell"><div class="left"><?= $tamil_html_unicodes[$id-1] ?></div></div>
             <div class="divTableCell"><div class="right" id="canvasDiv"><br/><button onclick="clearCanvas()">Clear</button></div></div>
           </div>
           <div class="divTableRow nextbutton">
-            <div class="divTableCell"><?=($id+1)."/".$total?></div>
+            <div class="divTableCell"><button onclick="previous()">Previous</button> <?=($id+1)."/".$total?></div>
             <div class="divTableCell"><button onclick="next()">next</button></div>
           </div>
         </div>
@@ -375,7 +375,8 @@
         method: 'POST',
         url: 'save.php',
         data: {
-          photo: photo
+          photo: photo,
+          id: <?= $id ?>
         },
         statusCode: {
           200: function() {
@@ -383,6 +384,9 @@
           }
         }
       });
+    }
+    function previous() {
+      window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id == 1? $total:($id-1))?>";
     }
   </script>
 </body>
