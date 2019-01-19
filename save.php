@@ -7,7 +7,7 @@ if(!empty(@$_POST['photo'])) {
 
 	if(base64_encode(base64_decode($data, true)) === $data) {
 		$data = base64_decode($data, true);
-		$file =  "data/".uniqid() . '.png';
+		$file =  "data/".$_POST['id']."_".$_SERVER["REMOTE_ADDR"]."_".uniqid() . '.png';
 		$success = file_put_contents($file, $data);
 		echo $success?0:1;
 	}
