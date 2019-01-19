@@ -68,6 +68,9 @@
     .nextbutton .divTableCell {
       text-align: right;
       border: none;
+      padding-left: 0px;
+      padding-right: 0;
+      padding-top: 10px;
     }
   </style>
   <script
@@ -240,7 +243,7 @@
     if(is_numeric(@$_GET["id"]))
       $id = $_GET["id"];
 
-    if( !((1 < $id) && ($id < $total)) )
+    if( !((1 < $id) && ($id <= $total)) )
       $id = 1;
 
     ?>
@@ -252,7 +255,7 @@
             <div class="divTableCell"><div class="right" id="canvasDiv"><br/><button onclick="clearCanvas()">Clear</button></div></div>
           </div>
           <div class="divTableRow nextbutton">
-            <div class="divTableCell"><button onclick="previous()">Previous</button> <?=($id+1)."/".$total?></div>
+            <div class="divTableCell"><button onclick="previous()" style="float: left;">Previous</button> <?=$id."/".$total?></div>
             <div class="divTableCell"><button onclick="next()">next</button></div>
           </div>
         </div>
@@ -380,7 +383,7 @@
         },
         statusCode: {
           200: function() {
-            window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id+1)?>";
+            window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id == $total? 1:($id+1))?>";
           }
         }
       });
