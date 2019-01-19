@@ -305,6 +305,7 @@
     var clickY = new Array();
     var clickDrag = new Array();
     var paint;
+    var hasPainted = false;
 
     function addClick(x, y, dragging) {
       clickX.push(x);
@@ -313,7 +314,7 @@
     }
     function redraw() {
       context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-      
+      hasPainted = true;
       context.strokeStyle = "#000";
       context.lineJoin = "round";
       context.lineWidth = 2;
@@ -332,6 +333,7 @@
     }
     // Clear the canvas context using the canvas width and height
     function clearCanvas() {
+      hasPainted = false;
       clickX = new Array();
       clickY = new Array();
       clickDrag = new Array();
@@ -373,20 +375,25 @@
 
     // Save the picture
     function next() {
-      var photo = canvas.toDataURL('image/png');                
-      $.ajax({
-        method: 'POST',
-        url: 'save.php',
-        data: {
-          photo: photo,
-          id: <?= $id ?>
-        },
-        statusCode: {
-          200: function() {
-            window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id == $total? 1:($id+1))?>";
-          }
-        }
-      });
+      if(hasPainted) {       
+          var photo = canvas.toDataURL('image/png');         
+          $.ajax({
+            method: 'POST',
+            url: 'save.php',
+            data: {
+              photo: photo,
+              id: <?= $id ?>
+            },
+            statusCode: {
+              200: function() {
+                window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id == $total? 1:($id+1))?>";
+              }
+            }
+          });
+      }
+      else {
+        window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id == $total? 1:($id+1))?>";
+      }
     }
     function previous() {
       window.location.href = "<?=$_SERVER["PHP_SELF"]."?id=".($id == 1? $total:($id-1))?>";
